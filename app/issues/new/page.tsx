@@ -27,7 +27,7 @@ const NewIssuePage = () => {
   const [error, setError] = useState("");
   const [isSbumitting, setIsSbumitting] = useState(false);
 
-  const handleIssueForm = async (data: any) => {
+  const handleIssueForm = handleSubmit(async (data) => {
     try {
       setIsSbumitting(true);
       await axios.post("/api/issues", data);
@@ -36,7 +36,7 @@ const NewIssuePage = () => {
       setIsSbumitting(false);
       setError("An unexpected error occurred.");
     }
-  };
+  });
 
   return (
     <div className="max-w-xl">
@@ -45,10 +45,7 @@ const NewIssuePage = () => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form
-        className=" space-y-5"
-        onSubmit={handleSubmit((data) => handleIssueForm(data))}
-      >
+      <form className=" space-y-5" onSubmit={handleIssueForm}>
         <TextField.Root>
           <TextField.Input placeholder="Title" {...register("title")} />
         </TextField.Root>
