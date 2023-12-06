@@ -47,4 +47,7 @@ const IssuesPage = async () => {
   );
 };
 
+// We tell next.js to opt out of static rendering
+export const dynamic = "force-dynamic";
+
 export default IssuesPage;
