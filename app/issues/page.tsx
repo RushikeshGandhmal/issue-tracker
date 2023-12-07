@@ -47,7 +47,7 @@ const IssuesPage = async () => {
   );
 };
 
-// We tell next.js to opt out of static rendering
+// This page has no Props so next.js by default render this page as static, to opt out of static rendering we use below line.
 export const dynamic = "force-dynamic";
 
 export default IssuesPage;
