@@ -33,7 +33,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
       setIsSbumitting(true);
       if (issue) axios.patch("/api/issues/" + issue.id, data);
       else await axios.post("/api/issues", data);
-      router.push("/issues");
+      router.push("/issues/list");
       router.refresh();
     } catch (error) {
       setIsSbumitting(false);
