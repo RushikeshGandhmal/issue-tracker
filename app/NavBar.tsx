@@ -1,12 +1,16 @@
 "use client";
+
+import { Box } from "@radix-ui/themes";
+import classNames from "classnames";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AiFillBug } from "react-icons/ai";
-import classNames from "classnames";
 
 const NavBar = () => {
   // This hook is dependent on Browser API's, so make this component add 'use client'
   const currentPath = usePathname();
+  const { status, data: session } = useSession();
 
   const links = [
     {
@@ -40,6 +44,16 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
+      <Box>
+        {status === "authenticated" && (
+          <Link href="/api/auth/signout">Logout</Link>
+        )}
+      </Box>
+      <Box>
+        {status === "unauthenticated" && (
+          <Link href="/api/auth/signin">Login</Link>
+        )}
+      </Box>
     </nav>
   );
 };
