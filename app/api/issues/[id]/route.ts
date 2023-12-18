@@ -14,10 +14,7 @@ export async function PATCH(
   const body = await request.json();
   const validation = patchIssueSchema.safeParse(body);
   if (!validation.success)
-    return NextResponse.json(
-      { error: validation.error.format() },
-      { status: 400 }
-    );
+    return NextResponse.json(validation.error.format(), { status: 400 });
 
   const { title, description, assignedToUserId } = body;
   if (assignedToUserId) {
